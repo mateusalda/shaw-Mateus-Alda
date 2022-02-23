@@ -88,7 +88,7 @@ maiorEMenor(arrayEx)
 //--------------------------------------------------------
 // Desafio 1
 
-let numEscolhido = Number(prompt("Escolha um numero de 0 a 99"))
+// let numEscolhido = Number(prompt("Escolha um numero de 0 a 99"))
 // Desafio 2
 let numSorteado = Math.floor(Math.random() * 100)
 numEscolhido = numSorteado
@@ -106,6 +106,7 @@ while (chute !== numEscolhido) {
         console.log(`Errrrrrrrou, é menor`);
     }
     tentativas++
+    chute = Number(prompt("Adivinhe o número escolhido"))
 }
 console.log("Acertou!");
 console.log(`O número de tentativas foi : ${tentativas}`);
