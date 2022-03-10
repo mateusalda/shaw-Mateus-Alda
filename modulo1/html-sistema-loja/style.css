@@ -1,0 +1,28 @@
+h1 {
+    background-color: steelblue;
+    color: aliceblue;
+    padding: 50px;
+}
+
+h2 {
+    background-color: darkslateblue;
+    color: white;
+    width: 300px;
+    padding: 5px;
+}
+
+th {
+    background-color: black;
+    color: white;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+.rodape {
+    background-color: coral;
+    color: aliceblue;
+    padding: 30px;
+}
