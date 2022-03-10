@@ -59,6 +59,11 @@ div img {
     height: 15px;
 }
 
+.img {
+    width: 50px;
+    height: 50px;
+}
+
 
 /** 
   *
@@ -69,7 +74,7 @@ div img {
 #container-de-descricao {
     background-color: #2274a5;
     color: white;
-    padding-top: 20px;
+    padding-top: 50px;
 }
 
 #container-de-descricao>ol {
