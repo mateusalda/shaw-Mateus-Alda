@@ -1,0 +1,151 @@
+* {
+    font-family: 'Quicksand', sans-serif;
+}
+
+body {
+    margin: 0;
+}
+
+header {
+    background-color: #030A04;
+    padding: 20px;
+}
+
+tr {
+    text-align: center;
+}
+
+footer {
+    background-color: #030A04;
+    color: white;
+}
+
+.header {
+    display: table;
+}
+.header h1, .header h2 {
+    background-color: #030A04;
+    color: white;
+    margin: 0;
+    padding-left: 50px;
+    display: table-cell;
+    vertical-align: middle;
+}
+.header img {
+    width: 80px;
+    display: table-cell;
+}
+
+.minha-descricao {
+    background-color: #FF5412;
+    color: white;
+    text-align: center;
+    padding: 100px 0;
+}
+.minha-descricao h1 {
+    margin-top: 0;
+    /* padding-top: 100px; */
+    font-size: 4em;
+}
+.minha-descricao p {
+    padding-bottom: 50px;
+    margin-bottom: 0;
+    font-size: 22px;
+}
+.minha-descricao img {
+    width: 20vw;
+    border-radius: 50%;
+}
+
+#formacao {
+    background-color: #FFB85D;
+    padding: 50px;
+}
+#formacao h2 {
+    margin-top: 0;
+    font-size: 2em;
+}
+#formacao ul {
+    margin-bottom: 0;
+    font-size: 20px;
+}
+
+#projetos {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+}
+#projetos h2 {
+    font-size: 3em;
+}
+#projetos th {
+    font-size: 22px;
+}
+
+#habilidades {
+    background-color: #3B707D;
+    color: white;
+    padding: 50px;
+}
+#habilidades h2 {
+    font-size: 3em;
+}
+#habilidades h3 {
+    font-size: 2em;
+}
+#habilidades p {
+    font-size: 20px;
+}
+
+#contato {
+    display: inline-block;
+    padding: 50px;
+    height: 200px;
+}
+.redes-sociais {
+    display: inline-block;
+    vertical-align: top;
+    padding: 50px;
+}
+.redes-sociais img {
+    width: 50px;
+    padding-left: 50px;
+}
+
+.descricao {
+    display: table;
+}
+.descricao div, .descricao p {
+    background-color: #FFB85D;
+    display: table-cell;
+    width: 25vw;
+    vertical-align: top;
+    padding: 8px;
+}
+.descricao img {
+    display: table-cell;
+    width: 70vw;
+    padding-left: 5vw;
+}
+
+.tech {
+    background-color: #FF5412;
+    color: white;
+    padding: 10px;
+}
+.tech h3 {
+    margin-top: 0;
+}
+
+.lista-imgs-projeto {
+    width: 40vw;
+    border: 2px solid black;
+}
+.lista-imgs {
+    background-color: #3B707D;
+    text-align: center;
+}
+
+.descricao {
+    font-size: 18px;
+}
