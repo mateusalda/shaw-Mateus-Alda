@@ -13,10 +13,22 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 20px;
+    /* padding-left: 20px; */
     background-color: #274472;
     color: white;
     flex-grow: 0;
+    position: fixed;
+    top: 0;
+    width: 100vw;
+}
+header .nome {
+    margin-left: 20px;
+}
+header .nome2 {
+    display: none;
+}
+header input {
+    margin: 20px;
 }
 
 .main {
@@ -57,3 +69,29 @@ footer {
 .pag-video video {
     max-height: 50vh;
 }
+
+@media screen and (min-device-width : 320px) and (max-device-width : 480px) {
+    /* celulares */
+    .main {
+        grid-template-columns: 1fr;
+    }
+    header .nome {
+        display: none;
+    }
+    header .nome2 {
+        display: inline;
+        margin-left: 20px;
+    }
+}
+
+@media screen and (min-device-width : 481px) and (max-device-width : 800px) {
+    /* tablets */
+    .main {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+@media screen and (min-device-width : 1200px) {
+    /* computadores */
+}
+    
