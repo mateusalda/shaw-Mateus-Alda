@@ -22,12 +22,15 @@ const SignUpPage = () => {
       event.preventDefault();
     };
 
-    const onSubmit = () => {
+    const submitForm = (event) => {
+        event.preventDefault()
+
         const body = {
             "username":form.name,
             "email": form.email,
             "password": form.password
         }
+
         axios.post(baseURL+'/users/signup', body)
         .then(response => {
             console.log(response.data);
@@ -40,7 +43,7 @@ const SignUpPage = () => {
     }
 
     return (
-        <Box component='form' autoComplete='off' >
+        <Box component='form' autoComplete='off' onSubmit={submitForm}>
             <TextField
                 required
                 name= 'name'
@@ -80,7 +83,7 @@ const SignUpPage = () => {
                     </InputAdornment>
                   }
             />
-            <Button onClick={() => onSubmit()}>Cadastrar</Button>
+            <Button type='submit'>Cadastrar</Button>
             <Button onClick={() => goToLoginPage(navigate)}>Ir para Login</Button>
         </Box>
     )
