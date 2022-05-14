@@ -41,8 +41,14 @@ const LoginPage = () => {
     }
 
     return (
-        <Box component='form' autoComplete='off' onSubmit={submitLogin}>
-            <TextField sx={{ m: 1 }}
+        <Box component='form' autoComplete='off' onSubmit={submitLogin} sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            justifyContent: 'center',
+            alignItems: 'center'
+        }}>
+            <TextField
+                sx={{ width: '300px', mt: 1 }}
                 name='email'
                 id="outlined-required"
                 label="Email"
@@ -50,9 +56,10 @@ const LoginPage = () => {
                 value={form.email}
                 onChange={onChange}
             />
-            <FormControl sx={{ m: 1 }} variant="outlined">
+            <FormControl variant="outlined">
                 <InputLabel htmlFor="outlined-adornment-password">Senha</InputLabel>
                 <OutlinedInput
+                    sx={{ width: '300px', mt: 1 }}
                     name='password'
                     id="outlined-adornment-password"
                     label="Senha"
@@ -73,10 +80,8 @@ const LoginPage = () => {
                     }
                 />
             </FormControl>
-            <div>
-                <Button type='submit'>Login</Button>
-                <Button onClick={() => goToSignUpPage(navigate)}>Ir para Cadastro</Button>
-            </div>
+            <Button sx={{ width: '300px', mt: 1 }} variant='contained' type='submit'>Login</Button>
+            <Button sx={{ width: '300px', mt: 1 }} variant='outlined' onClick={() => goToSignUpPage(navigate)}>Cadastrar</Button>
         </Box>
     )
 }

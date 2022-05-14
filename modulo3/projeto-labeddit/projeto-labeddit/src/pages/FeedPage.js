@@ -1,4 +1,4 @@
-import { Button, TextField } from '@mui/material'
+import { Button, IconButton, TextField, Typography } from '@mui/material'
 import { Box } from '@mui/system'
 import axios from 'axios'
 import { useEffect, useState } from 'react'
@@ -8,6 +8,8 @@ import { baseURL } from '../constants/constants'
 import { useForms } from '../hooks/useForms'
 import { useProtectedPage } from '../hooks/useProtectedPage'
 import { goToLoginPage } from '../router/coordinates'
+import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 
 const FeedPage = () => {
     const navigate = useNavigate()
@@ -60,6 +62,10 @@ const FeedPage = () => {
         })
     }
 
+    const changePage = (change) => {
+        setPage(page + change)
+    }
+
     const displayPosts = posts.map((post) => {
         return (
             <Box key={post.id}>
@@ -78,6 +84,7 @@ const FeedPage = () => {
             <Button variant='contained' sx={{m: 1}} onClick={() => logout()}>Logout</Button>
             <Box component='form' onSubmit={createPost}>
                 <TextField
+                    required
                     name='title'
                     id="outlined-basic"
                     value={form.title}
@@ -86,6 +93,7 @@ const FeedPage = () => {
                     fullWidth={true}
                 />
                 <TextField
+                    required
                     name='content'
                     id="outlined-multiline-static"
                     multiline
@@ -98,6 +106,18 @@ const FeedPage = () => {
                 <div>
                     <Button type='submit' sx={{width: '100%', p: 1}} variant='contained'>Criar Post</Button>
                 </div>
+            </Box>
+            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%', mt: 2}}>
+                <Typography>Página:</Typography>
+            </Box>
+            <Box sx={{display: 'flex', justifyContent: 'center', alignItems: 'center', width: '100%'}}>
+                <IconButton disabled={page === 1} onClick={() => changePage(-1)}>
+                    <NavigateBeforeIcon/>
+                </IconButton>
+                <Typography>{page}</Typography>
+                <IconButton onClick={() => changePage(1)}>
+                    <NavigateNextIcon/>
+                </IconButton>
             </Box>
             {displayPosts}
         </Box>
