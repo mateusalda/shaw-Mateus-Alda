@@ -1,0 +1,15 @@
+{
+  "name": "aula-node",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./index.js",
+    "start1": "node ./exercicio1/exercicio1.js",
+    "start2": "node ./exercicio2/exercicio2.js",
+    "start3": "node ./exercicio3/exercicio3.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mateus Aldá",
+  "license": "ISC"
+}
