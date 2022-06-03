@@ -1,0 +1,14 @@
+1.
+a) Método GET
+b) /users
+
+2.
+a) Usando query, pois se trata de uma busca dentro de um conjunto
+b) Conferindo se eles batem com os tiposs já existentes
+
+3.
+a) Query params
+
+4.
+a) Nada mudou
+b) Não é apropriado usar o PUT pois ele deve ser usado para atualizar um dado, não criar um novo
