@@ -12,7 +12,7 @@ export class hashManager {
 
         const cost = Number(process.env.BCRYPT_COST!);
         const salt = await bcrypt.genSalt(cost);
-        const cypherText = await bcrypt.hash(textToHide, salt);
+        const cypherText = await bcrypt.hash(s, salt);
 
         return cypherText;
     }
