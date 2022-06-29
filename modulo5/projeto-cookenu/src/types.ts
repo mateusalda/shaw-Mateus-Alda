@@ -8,11 +8,16 @@ export type user = {
    email: string
    password: string
    name: string
-   nickname: string,
-   role: UserRole
+}
+
+export type recipe = {
+    id: string,
+    title: string,
+    description: string,
+    createdAt: string,
+    userId: string
 }
 
 export interface AuthenticationData {
-    id: string,
-    role: UserRole
+    id: string
 }
