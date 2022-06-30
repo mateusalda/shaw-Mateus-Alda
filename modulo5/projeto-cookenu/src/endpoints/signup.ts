@@ -40,7 +40,8 @@ export default async function signup (req: Request, res: Response): Promise<void
             id,
             name,
             email,
-            password: hash
+            password: hash,
+            following: []
         }
 
         await userDB.create(newUser)

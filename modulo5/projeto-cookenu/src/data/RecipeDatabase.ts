@@ -6,7 +6,6 @@ export class RecipeDatabase extends BaseDatabase {
         await this.getConnection()
             ('cookenu_recipes')
             .insert(newRecipe)
-
     }
     public edit = async (id: string, columnsUpdate: { title: string, description: string }): Promise<number> => {
         const affectRows = await this.getConnection()('cookenu_recipes')
@@ -14,14 +13,19 @@ export class RecipeDatabase extends BaseDatabase {
             .where({ id })
         return Number(affectRows) 
     }
-    public getByUserId = async (userId: string): Promise<recipe[]> => {
+    public getByuser_id = async (user_id: string): Promise<recipe[]> => {
         const result = await this.getConnection()('cookenu_recipes')
-            .where({ userId }) 
+            .where({ user_id }) 
         return result 
     }
     public getById = async (id: string): Promise<recipe> => {
         const [result] = await this.getConnection()('cookenu_recipes')
             .where({ id }) 
-        return result 
+        return result
+    }
+    public getFeed = async (followingIds: string[]): Promise<recipe[]> => {
+        const result = await this.getConnection()('cookenu_recipes')
+            .whereIn('user_id', followingIds) 
+        return result
     }
 }

@@ -29,8 +29,8 @@ export default async function createRecipe (req: Request, res: Response): Promis
             id: id,
             title: title,
             description: description,
-            createdAt: moment().format('yyyy-mm-dd'),
-            userId: data.id
+            created_at: moment().format('YYYY-MM-DD'),
+            user_id: data.id
         }
 
         const recipeDB = new RecipeDatabase()

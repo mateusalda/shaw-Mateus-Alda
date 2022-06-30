@@ -28,7 +28,8 @@ export default async function getProfile(req: Request, res: Response): Promise<v
             user: {
                 id: user.id,
                 name: user.name,
-                email: user.email
+                email: user.email,
+                following: user.following
             }
         })
 

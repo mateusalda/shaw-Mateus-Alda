@@ -4,18 +4,19 @@ export enum UserRole {
 }
 
 export type user = {
-   id: string
-   email: string
-   password: string
-   name: string
+    id: string,
+    name: string,
+    email: string,
+    password: string,
+    following: string[]
 }
 
 export type recipe = {
     id: string,
     title: string,
     description: string,
-    createdAt: string,
-    userId: string
+    created_at: string,
+    user_id: string
 }
 
 export interface AuthenticationData {
