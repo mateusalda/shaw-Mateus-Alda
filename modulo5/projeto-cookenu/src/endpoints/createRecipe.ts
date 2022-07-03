@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import { RecipeDatabase } from "../data/RecipeDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { IdGenerator } from "../services/IdGenerator";
-import { recipe } from "../types";
+import { Recipe } from "../types";
 import moment from 'moment'
 
 export default async function createRecipe (req: Request, res: Response): Promise<void> {
@@ -18,6 +18,10 @@ export default async function createRecipe (req: Request, res: Response): Promis
             res.status(422)
             throw new Error("Invalid 'title' or 'description' field.")
         }
+        if(title === 'Coffe' && description === 'Please meke me some coffe'){
+            res.status(418)
+            throw new Error("Sorry, I can't.")
+        }
         
         const authenticator = new Authenticator()
         const data = authenticator.getTokenData(token)
@@ -25,7 +29,7 @@ export default async function createRecipe (req: Request, res: Response): Promis
         const generate = new IdGenerator()
         const id: string = generate.generateId()
 
-        const newRecipe: recipe = {
+        const newRecipe: Recipe = {
             id: id,
             title: title,
             description: description,

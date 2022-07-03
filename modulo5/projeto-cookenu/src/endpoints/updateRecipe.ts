@@ -1,16 +1,21 @@
 import { Request, Response } from "express";
-import moment from "moment";
 import { RecipeDatabase } from "../data/RecipeDatabase";
 import { Authenticator } from "../services/Authenticator";
 
-export default async function getRecipe(req: Request, res: Response): Promise<void> {
+export default async function updateRecipe(req: Request, res: Response): Promise<void> {
     try {
         const token = req.headers.authorization
         const id = req.params.id
+        const { title, description } = req.body
 
         if (!token) {
             res.status(401)
             throw new Error("Authentication token is missing.")
+        }
+
+        if (!title && !description) {
+            res.status(422)
+            throw new Error("Please suply 'title' or 'description'.")
         }
 
         const authenticator = new Authenticator()
@@ -19,12 +24,23 @@ export default async function getRecipe(req: Request, res: Response): Promise<vo
         const recipeDB = new RecipeDatabase()
         const recipe = await recipeDB.getById(id)
 
-        if(!recipe){
+        if (!recipe) {
             res.status(404)
             throw new Error("Recipe with this ID not found.")
         }
+        if (recipe.user_id !== data.id) {
+            res.status(401)
+            throw new Error("User cannot modify this recipe.")
+        }
 
-        res.send({ recipe })
+        const affectedRows = await recipeDB.edit(recipe.id, { title, description })
+
+        if (affectedRows == 0) {
+            res.status(400)
+            throw new Error("Update failed.")
+        }
+
+        res.send({ message: "Recipe updated." })
 
     } catch (error: any) {
         console.log(error);

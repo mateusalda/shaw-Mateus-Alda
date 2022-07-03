@@ -8,10 +8,12 @@ export type user = {
     name: string,
     email: string,
     password: string,
-    following: string[]
+    following: string[],
+    followers: string[],
+    role: UserRole
 }
 
-export type recipe = {
+export type Recipe = {
     id: string,
     title: string,
     description: string,
@@ -20,5 +22,6 @@ export type recipe = {
 }
 
 export interface AuthenticationData {
-    id: string
+    id: string,
+    role: UserRole
 }

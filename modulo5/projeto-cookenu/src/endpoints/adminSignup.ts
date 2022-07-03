@@ -3,9 +3,9 @@ import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 import { HashManager } from "../services/HashManager";
 import { IdGenerator } from "../services/IdGenerator";
-import { user, UserRole } from "../types";
+import { AuthenticationData, user, UserRole } from "../types";
 
-export default async function signup (req: Request, res: Response): Promise<void> {
+export default async function adminSignup (req: Request, res: Response): Promise<void> {
     try {
         const {name, email, password} = req.body
 
@@ -36,26 +36,27 @@ export default async function signup (req: Request, res: Response): Promise<void
         const hashManager = new HashManager()
         const hash = await hashManager.hash(password)
 
-        const newUser: user = {
+        const newAdminUser: user = {
             id,
             name,
             email,
             password: hash,
             following: [],
             followers: [],
-            role: UserRole.NORMAL
+            role: UserRole.ADMIN
         }
 
-        await userDB.create(newUser)
+        await userDB.create(newAdminUser)
 
         const authenticator = new Authenticator()
-        const token = authenticator.generateToken({ id, role: newUser.role })
+        const authData: AuthenticationData = { id, role: newAdminUser.role }
+        const token = authenticator.generateToken(authData)
 
         const userReturn = {
             id, name, email
         }
 
-        res.status(201).send({ newUser: userReturn, token})
+        res.status(201).send({ newAdminUser: userReturn, token})
 
     } catch (error: any) {
         console.log(error)

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserDatabase } from "../data/UserDatabase";
+import { follow } from "../data/follow";
 import { Authenticator } from "../services/Authenticator";
 
 export default async function followUser(req: Request, res: Response): Promise<void> {
@@ -19,25 +19,14 @@ export default async function followUser(req: Request, res: Response): Promise<v
         const authenticator = new Authenticator()
         const data = authenticator.getTokenData(token)
 
-        const userToFollowDB = new UserDatabase()
-        const userToFollow = await userToFollowDB.getById(followId)
+        const response = await follow(data.id, followId)
 
-        const userDB = new UserDatabase()
-        const user = await userDB.getById(data.id)
-
-        if (!userToFollow) {
-            res.status(404)
-            throw new Error("User with this ID not found.")
-        }
-        if (user.following.includes(followId)) {
-            res.status(400)
-            throw new Error("User with this ID already being followed.")
+        if (response.error){
+            res.status(response.errorCode)
+            throw new Error(response.error)
         }
 
-        user.following.push(followId)
-        await userDB.setFollowing(user.id, JSON.stringify(user.following))
-
-        res.send({ message: "Followed successfully."})
+        res.send({ message: response.success })
 
     } catch (error: any) {
         console.log(error);

@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import { UserDatabase } from "../data/UserDatabase";
+import { unfollow } from "../data/unfollow";
 import { Authenticator } from "../services/Authenticator";
 
 export default async function unfollowUser(req: Request, res: Response): Promise<void> {
@@ -19,24 +19,12 @@ export default async function unfollowUser(req: Request, res: Response): Promise
         const authenticator = new Authenticator()
         const data = authenticator.getTokenData(token)
 
-        const userToUnfollowDB = new UserDatabase()
-        const userToUnfollow = await userToUnfollowDB.getById(unfollowId)
+        const response = await unfollow(data.id, unfollowId)
 
-        const userDB = new UserDatabase()
-        const user = await userDB.getById(data.id)
-
-        if (!userToUnfollow) {
-            res.status(404)
-            throw new Error("User with this ID not found.")
+        if (response.error){
+            res.status(response.errorCode)
+            throw new Error(response.error)
         }
-        if (!user.following.includes(unfollowId)) {
-            res.status(400)
-            throw new Error("User with this ID not being followed.")
-        }
-
-        const index = user.following.indexOf(unfollowId)
-        user.following.splice(index, 1)
-        await userDB.setFollowing(user.id, JSON.stringify(user.following))
 
         res.send({ message: "Unfollowed successfully."})
 

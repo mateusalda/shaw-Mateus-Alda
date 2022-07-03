@@ -4,7 +4,7 @@ import { RecipeDatabase } from "../data/RecipeDatabase";
 import { UserDatabase } from "../data/UserDatabase";
 import { Authenticator } from "../services/Authenticator";
 
-export default async function getRecipeFeed(req: Request, res: Response): Promise<void> {
+export default async function getUserFeed(req: Request, res: Response): Promise<void> {
     try {
         const token = req.headers.authorization
 
@@ -22,7 +22,20 @@ export default async function getRecipeFeed(req: Request, res: Response): Promis
         const recipeDB = new RecipeDatabase()
         const recipes = await recipeDB.getFeed(user.following)
 
-        res.send({ recipes })
+        const feed = await Promise.all(recipes.map(async (recipe) => {
+            const followingUserDB = new UserDatabase()
+            const followingUser = await followingUserDB.getById(recipe.user_id)
+            const fullRecipe = {
+                ...recipe,
+                user_name: followingUser.name
+            }
+            
+            return fullRecipe
+        }))
+        console.log('feed', feed);
+        
+
+        res.send({ feed: feed })
 
     } catch (error: any) {
         console.log(error);
