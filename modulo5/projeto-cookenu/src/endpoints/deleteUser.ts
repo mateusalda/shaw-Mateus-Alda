@@ -19,9 +19,7 @@ export default async function deleteUser(req: Request, res: Response): Promise<v
         const data = authenticator.getTokenData(token)
 
         const userDB = new UserDatabase()
-        const user = await userDB.getById(id)
-        console.log('data',data);
-        
+        const user = await userDB.getById(id)        
 
         if (!user) {
             res.status(404)
